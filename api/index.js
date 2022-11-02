@@ -19,3 +19,4 @@ db.sync({ force: false }).then(() => {
     console.log("Escuchando en el puerto ", port);
   });
 });
+
