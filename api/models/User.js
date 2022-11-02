@@ -1,5 +1,6 @@
 const S = require("sequelize");
 const db = require("../db/config");
+const bcrypt = require("bcrypt");
 
 class User extends S.Model {
   validatePassword(password) {
@@ -45,7 +46,7 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
-    address: { type: S.STRING, allowNull: false },
+
     credits: { type: S.INTEGER, allowNull: false },
   },
 

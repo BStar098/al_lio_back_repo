@@ -28,8 +28,8 @@ Product.init(
     description: {
       type: S.TEXT,
     },
-    img_front: { type: S.STRING },
-    img_back: { type: S.STRING },
+    img: { type: S.ARRAY(S.STRING) },
+
     rating: { type: S.INTEGER },
   },
   {

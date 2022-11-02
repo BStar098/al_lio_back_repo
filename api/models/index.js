@@ -12,4 +12,4 @@ User.belongsToMany(Product, { through: Compras });
 Product.belongsToMany(User, { through: Reviews });
 User.belongsToMany(Product, { through: Reviews });
 
-module.exports = (User, Product, Compras, Reviews);
+module.exports = { User, Product, Compras, Reviews };
