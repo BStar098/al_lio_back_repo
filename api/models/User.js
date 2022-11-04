@@ -19,7 +19,7 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
-    direccion: {
+    address: {
       type: S.STRING,
       allowNull: false,
     },
@@ -33,6 +33,9 @@ User.init(
     password: {
       type: S.STRING,
       allowNull: false,
+      validate: {
+        min: 8
+      }
     },
     salt: {
       type: S.STRING,

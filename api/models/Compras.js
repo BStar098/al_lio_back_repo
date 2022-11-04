@@ -5,9 +5,6 @@ class Compras extends S.Model {}
 
 Compras.init(
   { 
-    date: { 
-      type: S.DATE 
-    }, 
     state: { 
       type: S.STRING 
     } 
