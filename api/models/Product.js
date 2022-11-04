@@ -7,6 +7,7 @@ Product.init(
   {
     name: {
       type: S.STRING,
+      defaultValue: false
     },
     colour: {
       type: S.STRING,
@@ -23,12 +24,14 @@ Product.init(
     },
     category: {
       type: S.STRING,
+      defaultValue:false
     },
     description: {
       type: S.TEXT,
     },
     img: { 
-      type: S.ARRAY(S.STRING) 
+      type: S.ARRAY(S.STRING),
+      defaultValue: []
     },
     rating: { 
       type: S.INTEGER 

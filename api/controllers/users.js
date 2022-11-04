@@ -26,16 +26,10 @@ const loginUser = (req, res) => {
   });
 };
 
-const logOutUser = (req, res) => {
-  res.clearCookie("token").sendStatus(204);
-};
-
 const getUsers = (req, res) => {
-  req.user.type === "admin"
-    ? User.findAll()
+    User.findAll()
         .then(users => res.send(users))
         .catch(err => console.error(err))
-    : res.send("Debe ser administrador para visualizar todos los usuarios");
 };
 
 const getSingleUser = (req, res) => {
@@ -58,29 +52,24 @@ const updateUser = (req, res) => {
     .catch(err => console.error(err));
 };
 
-const deleteUser = (req, res) => {
-  req.user.type === "admin"
-    ? User.destroy({ where: { id: req.params.id } })
+const deleteUser = (req, res) => { 
+    User.destroy({ where: { id: req.params.id } })
         .then(res.sendStatus(204))
         .catch(err => console.error(err))
-    : res.send("Debe ser administrador para eliminar un usuario");
 };
 
 const setAdmin = (req, res) => {
-  //req.user.type === "admin" ?
   User.findOne({ where: { id: req.params.id } })
     .then(user => {
       user.type = "admin";
       res.send(user);
     })
     .catch(err => console.error(err));
-  //: res.send("Debe ser administrador para asignarle permisos a un usuario");
 };
 
 module.exports = {
   createUser,
   loginUser,
-  logOutUser,
   getUsers,
   getSingleUser,
   updateUser,
