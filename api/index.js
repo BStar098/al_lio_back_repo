@@ -6,7 +6,6 @@ const db = require("./db/config");
 const cookieParser = require("cookie-parser");
 const models = require("./models/index");
 const routes = require("./routes/index");
-const nodemailer = require("nodemailer");
 
 app.use(express.json());
 app.use(cookieParser());

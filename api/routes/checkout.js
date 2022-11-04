@@ -68,7 +68,7 @@ router.post("/send", (req, res) => {
     <h1>Details</h1>
     <li>Nompre : ${foundUser.name}</li>
     <li>Direccion de Entrega: ${foundUser.direccion}</li>
-    <li>Producto comprado :${foundProduct.name} </li>
+    <li>Producto comprado :${name} </li>
     <li>Creditos restantes:${foundUser.credits}</li>
     <h1>Thanks for your purchase!</h1>
     <h3>Kind Regards,</h3>
@@ -93,6 +93,7 @@ router.post("/send", (req, res) => {
         };
 
         transporter.sendMail(mailOption);
+        res.sendStatus(200);
       });
     });
   });
