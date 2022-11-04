@@ -41,13 +41,14 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
-
     type: {
       type: S.STRING,
       allowNull: false,
     },
-
-    credits: { type: S.INTEGER, allowNull: false },
+    credits: { 
+      type: S.INTEGER, 
+      allowNull: false 
+    },
   },
 
   {

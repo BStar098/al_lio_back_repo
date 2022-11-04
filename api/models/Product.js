@@ -24,13 +24,15 @@ Product.init(
     category: {
       type: S.STRING,
     },
-
     description: {
       type: S.TEXT,
     },
-    img: { type: S.ARRAY(S.STRING) },
-
-    rating: { type: S.INTEGER },
+    img: { 
+      type: S.ARRAY(S.STRING) 
+    },
+    rating: { 
+      type: S.INTEGER 
+    },
   },
   {
     sequelize: db,

@@ -1,0 +1,25 @@
+{
+  "user": {
+    "name": "Elian",
+    "direccion": "9 de julio",
+    "email": "pepe@gmail.com",
+    "password": "3214",
+    "genre": "male",
+    "type": "user",
+    "credits": 150
+  },
+  "product":{
+    "name":"remera-basica",
+    "colour":"red",
+    "size":"M",
+    "price":250,
+    "stock":100,
+    "category":"remera",
+    "description":"remera basica"
+  },
+  "cart":{
+    "userId":1,
+    "productId":1,
+    "quantity":2
+  }
+}
