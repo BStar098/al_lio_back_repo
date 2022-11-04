@@ -1,17 +1,17 @@
 const { generateToken } = require("../config/tokens");
-const User = require("../models/User");
+const { User } = require("../models/index");
 
 const createUser = (req, res) => {
   User.create(req.body)
-    .then((user) => res.status(201).send(user))
-    .catch((err) => console.error(err));
+    .then(user => res.status(201).send(user))
+    .catch(err => console.error(err));
 };
 
 const loginUser = (req, res) => {
   const { email, password } = req.body;
-  User.findOne({ where: { email } }).then((user) => {
+  User.findOne({ where: { email } }).then(user => {
     if (!user) return res.sendStatus(401);
-    user.validatePassword(password).then((isValid) => {
+    user.validatePassword(password).then(isValid => {
       if (!isValid) return res.sendStatus(401);
       const payload = {
         id: user.id,
@@ -33,15 +33,15 @@ const logOutUser = (req, res) => {
 const getUsers = (req, res) => {
   req.user.type === "admin"
     ? User.findAll()
-        .then((users) => res.send(users))
-        .catch((err) => console.error(err))
+        .then(users => res.send(users))
+        .catch(err => console.error(err))
     : res.send("Debe ser administrador para visualizar todos los usuarios");
 };
 
 const getSingleUser = (req, res) => {
   User.findOne({ where: { id: req.params.id } })
-    .then((user) => res.send(user))
-    .catch((err) => console.error(err));
+    .then(user => res.send(user))
+    .catch(err => console.error(err));
 };
 
 const updateUser = (req, res) => {
@@ -55,25 +55,25 @@ const updateUser = (req, res) => {
       const user = updated[0];
       res.send(user);
     })
-    .catch((err) => console.error(err));
+    .catch(err => console.error(err));
 };
 
 const deleteUser = (req, res) => {
   req.user.type === "admin"
     ? User.destroy({ where: { id: req.params.id } })
         .then(res.sendStatus(204))
-        .catch((err) => console.error(err))
+        .catch(err => console.error(err))
     : res.send("Debe ser administrador para eliminar un usuario");
 };
 
 const setAdmin = (req, res) => {
   //req.user.type === "admin" ?
   User.findOne({ where: { id: req.params.id } })
-    .then((user) => {
+    .then(user => {
       user.type = "admin";
       res.send(user);
     })
-    .catch((err) => console.error(err));
+    .catch(err => console.error(err));
   //: res.send("Debe ser administrador para asignarle permisos a un usuario");
 };
 
