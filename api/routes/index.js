@@ -7,7 +7,9 @@ const checkout = require("./checkout");
 
 router.use("/users", users);
 router.use("/products", products);
+router.use("/checkout", checkout);
 router.use("/cart", cart);
-router.use("/checkout", checkout)
+
+
 
 module.exports = router;

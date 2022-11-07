@@ -1,3 +1,51 @@
+
+[
+  {
+    "name": "remera clara",
+    "colour": "blanco",
+    "size": "M",
+    "price": 500,
+    "stock": 10000,
+    "category": "remera",
+    "description": "remera blanca clasica",
+    "img": "img",
+    "rating": 5
+  },
+  {
+    "name": "remera negra",
+    "colour": "negro",
+    "size": "M",
+    "price": 550,
+    "stock": 10000,
+    "category": "remera",
+    "description": "remera negra clasica",
+    "img": "img",
+    "rating": 4
+  },
+  {
+    "name": "pantalon negra",
+    "colour": "negro",
+    "size": "M",
+    "price": 550,
+    "stock": 10000,
+    "category": "pantalon",
+    "description": "pantalon negra clasica",
+    "img": "img",
+    "rating": 4
+  },
+  {
+    "name": "pantalon claro",
+    "colour": "blanco",
+    "size": "M",
+    "price": 500,
+    "stock": 10000,
+    "category": "pantalon",
+    "description": "pantalon blanco clasico",
+    "img": "img",
+    "rating": 5
+  }
+]
+
 {
   "user": {
     "name": "Elian",
@@ -23,3 +71,4 @@
     "quantity":2
   }
 }
+
