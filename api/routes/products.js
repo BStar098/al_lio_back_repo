@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/search/", (req, res) => {
+router.get("/search", (req, res) => {
   Product.findOne({
     where: req.body,
   })
@@ -23,9 +23,9 @@ router.get("/:name", (req, res) => {
     },
   }).then((products) => res.send(products));
 });
-router.post("/:name", (req, res) => {
-  Product.create(req.body)
 
+router.post("/", (req, res) => {
+  Product.create(req.body)
     .then((products) => res.send(products))
     .catch((err) => {
       console.log(err);
@@ -50,4 +50,5 @@ router.put("/:id", (req, res, next) => {
     returning: true,
   }).then(([filas, products]) => res.send(products[0]));
 });
+
 module.exports = router;

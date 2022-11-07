@@ -14,7 +14,7 @@ app.use(express.static("src"));
 
 app.use("/api", routes);
 
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   app.listen(port, () => {
     console.log("Escuchando en el puerto ", port);
   });
