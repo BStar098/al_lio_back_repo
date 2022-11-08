@@ -15,10 +15,12 @@ app.use(express.static("src"));
 
 app.use("/api", routes);
 
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Se ha producido un error');
 });
+
 
 db.sync({ force: false }).then(() => {
   app.listen(port, () => {
