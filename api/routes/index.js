@@ -10,6 +10,4 @@ router.use("/products", products);
 router.use("/checkout", checkout);
 router.use("/cart", cart);
 
-
-
 module.exports = router;
