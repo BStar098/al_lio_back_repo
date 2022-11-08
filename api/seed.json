@@ -1,4 +1,3 @@
-
 [
   {
     "name": "remera clara",
@@ -43,31 +42,31 @@
     "description": "pantalon blanco clasico",
     "img": "img",
     "rating": 5
+  },
+  {
+    "user": {
+      "name": "Elian",
+      "address": "9 de julio",
+      "email": "pepe@gmail.com",
+      "password": "3214",
+      "genre": "m"
+    },
+    "product":{
+      "name":"remera-basica",
+      "colour":"red",
+      "size":"M",
+      "price":250,
+      "stock":100,
+      "category":"remera",
+      "description":"remera basica",
+      "img":["https://static.dafiti.com.ar/p/polo-label-2050-054934-3-zoom.jpg", "https://static.dafiti.com.ar/p/polo-label-2048-054934-2-zoom.jpg"]
+    },
+    "cart":{
+      "userId":1,
+      "productId":1,
+      "quantity":2
+    }
   }
 ]
 
-{
-  "user": {
-    "name": "Elian",
-    "address": "9 de julio",
-    "email": "pepe@gmail.com",
-    "password": "3214",
-    "genre": "m"
-  },
-  "product":{
-    "name":"remera-basica",
-    "colour":"red",
-    "size":"M",
-    "price":250,
-    "stock":100,
-    "category":"remera",
-    "description":"remera basica",
-    "img":["https://static.dafiti.com.ar/p/polo-label-2050-054934-3-zoom.jpg", "https://static.dafiti.com.ar/p/polo-label-2048-054934-2-zoom.jpg"]
-  },
-  "cart":{
-    "userId":1,
-    "productId":1,
-    "quantity":2
-  }
-}
 

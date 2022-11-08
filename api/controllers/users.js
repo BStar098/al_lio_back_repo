@@ -44,9 +44,14 @@ const createUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!regexEmail.test(email)) res.status(400).send("It's not an email");
-  if (!regexPassword.test(password))
-    res.status(400).send("Invalid characters or length in the password");
+  if (!regexEmail.test(email)) {
+    res.status(400).send("It's not an email")
+    return
+  }
+  if (!regexPassword.test(password)){
+    res.status(400).send("Invalid characters or length in the password")
+    return
+  }
 
   try {
     const response = await login(email, password);

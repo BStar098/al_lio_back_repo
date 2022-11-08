@@ -1,6 +1,5 @@
 const { Product, User, Compras, Cart } = require("../models");
 const nodemailer = require("nodemailer");
-const { compare } = require("bcrypt");
 
 const allCompras = (req, res) => {
   Compras.findAll().then((compras) => res.send(compras));
