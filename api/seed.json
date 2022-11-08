@@ -49,12 +49,10 @@
 {
   "user": {
     "name": "Elian",
-    "direccion": "9 de julio",
+    "address": "9 de julio",
     "email": "pepe@gmail.com",
     "password": "3214",
-    "genre": "male",
-    "type": "user",
-    "credits": 150
+    "genre": "m"
   },
   "product":{
     "name":"remera-basica",
@@ -63,7 +61,8 @@
     "price":250,
     "stock":100,
     "category":"remera",
-    "description":"remera basica"
+    "description":"remera basica",
+    "img":["https://static.dafiti.com.ar/p/polo-label-2050-054934-3-zoom.jpg", "https://static.dafiti.com.ar/p/polo-label-2048-054934-2-zoom.jpg"]
   },
   "cart":{
     "userId":1,
