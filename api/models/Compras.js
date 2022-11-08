@@ -4,6 +4,7 @@ const db = require("../db/config");
 class Compras extends S.Model {}
 
 Compras.init(
+
   { 
     state: { 
       type: S.STRING 
