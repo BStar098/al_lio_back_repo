@@ -9,21 +9,21 @@ const {
   getSingleUser,
   updateUser,
   deleteUser,
-  setAdmin
+  setAdminis
 } = require("../controllers/users");
 
 router.post("/register", createUser);
 
 router.post("/login", loginUser);
 
-router.post("/:id", validateAuth, setAdmin)
+router.post("/:id", setAdminis)
 
 router.put("/:id", updateUser);
 
-router.delete("/:id", validateAuth, deleteUser);
+router.delete("/:id", deleteUser);
 
-router.get("/", validateAuth, getUsers)
+router.get("/", getUsers)
 
-router.get("/:id", validateAuth, getSingleUser);
+router.get("/:id", getSingleUser);
 
 module.exports = router;

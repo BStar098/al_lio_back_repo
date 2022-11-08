@@ -1,54 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { Product } = require("../models/index");
+const { getAllProducts, getProductsWithFilters, getOneProduct, createProduct, deleteProduct, editProduct } = require("../controllers/products");
 
-router.get("/", (req, res, next) => {
-  Product.findAll()
-    .then((products) => res.send(products))
-    .catch(next);
-});
+router.get("/", getAllProducts);
 
-router.get("/search", (req, res) => {
-  Product.findOne({
-    where: req.body,
-  })
-    .then((products) => res.send(products))
-    .catch((err) => console.log(err));
-});
+router.get("/search", getProductsWithFilters);
 
-router.get("/:name", (req, res) => {
-  Product.findOne({
-    where: {
-      name: req.params.name,
-    },
-  }).then((products) => res.send(products));
-});
+router.get("/:id", getOneProduct);
 
-router.post("/", (req, res) => {
-  Product.create(req.body)
-    .then((products) => res.send(products))
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.post("/", createProduct);
 
-router.delete("/:id", (req, res, next) => {
-  Product.destroy({
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then(() => res.sendStatus(202))
-    .catch(next);
-});
+router.delete("/:id", deleteProduct);
 
-router.put("/:id", (req, res, next) => {
-  Product.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
-    returning: true,
-  }).then(([filas, products]) => res.send(products[0]));
-});
+router.put("/:id", editProduct);
 
 module.exports = router;
