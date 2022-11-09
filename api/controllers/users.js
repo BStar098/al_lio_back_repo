@@ -9,8 +9,8 @@ const {
 } = require("../services/users-services");
 
 const regexEmail = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const regexPassword = /^[a-zA-Z0-9 !@#$%^&*()-_=+.,']{8}$/;
-const regexName = /^[a-zA-Z ]+$/;
+const regexPassword = /^[a-zA-Z0-9 !@#$%^&*()-_=+.,']{6}$/;
+const regexName = /^[a-zA-Z0-9 ]+$/;
 const regexAddress = /^[a-zA-Z0-9 ]+$/;
 const regexId = /^[0-9]+$/;
 

@@ -7,7 +7,6 @@ Product.init(
   {
     name: {
       type: S.STRING,
-      defaultValue: false
     },
     colour: {
       type: S.STRING,
@@ -17,14 +16,12 @@ Product.init(
     },
     price: {
       type: S.INTEGER,
-      allowNull: false,
     },
     stock: {
       type: S.INTEGER,
     },
     category: {
       type: S.STRING,
-      defaultValue:false
     },
     description: {
       type: S.TEXT,
