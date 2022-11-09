@@ -71,4 +71,7 @@
     "quantity":2
   }
 }
-
+http://localhost:3001/api/users/register
+http://localhost:3001/api/products/
+http://localhost:3001/api/cart/
+http://localhost:3001/api/checkout/send

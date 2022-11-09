@@ -1,6 +1,5 @@
 const { Product, User, Compras, Cart } = require("../models");
 const nodemailer = require("nodemailer");
-const { compare } = require("bcrypt");
 
 const allCompras = (req, res) => {
   Compras.findAll().then((compras) => res.send(compras));
@@ -41,9 +40,9 @@ const checkout = async (req, res, next) => {
     const id = req.body.userId;
     Compras.findAll({ where: { userId: id } }).then(async (compras) => {
       let productList = [];
-      let states = "";
+      //let states = "";
       compras.forEach(async (compra, i) => {
-        states = compra.dataValues.state;
+        //states = compra.dataValues.state;
         await Product.findOne({ where: { id: compra.productId } }).then(
           (productFound) => {
             productList.push(productFound.dataValues.name);
@@ -55,9 +54,9 @@ const checkout = async (req, res, next) => {
 
       await Cart.findAll({ where: { userId: id } }).then((compraCart) => {
         compraCart.forEach((compra, i) => {
-          states = compra.dataValues.state;
           finalquantity += compra.dataValues.quantity;
           finalPrice += compra.dataValues.finalPrice;
+          compra.destroy();
         });
       });
       await User.findOne({ where: { id: id } }).then((foundUser) => {
@@ -128,6 +127,8 @@ const confirm = async (req, res, next) => {
               productId: productFound.dataValues.id,
               userId: id,
               state: "in process",
+              quantity: quantityOfPurchasedProducts,
+              finalPrice: finalPrice,
             });
           }
         );
