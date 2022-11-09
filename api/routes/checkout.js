@@ -20,8 +20,8 @@ router.get("/search/:id", comprasSingleUser);
 //ruta para todas las compras de un solo producto
 router.get("/search/products/:id", comprasSingleProduct);
 
-//ruta para enviar el mail de confirmacion de compra con todos los datos de la compra , solo requiere el user ID.
-router.post("/send", checkout);
+//ruta para enviar el mail de confirmacion de compra con todos los datos de la compra y elimina el cart del usuario , solo requiere el user ID.
+router.post("/checkout", checkout);
 
 //ruta para corroborar y modificar el stock; para corroborar y modificar los credits ; para crear la compra de cada productos relacionado a un usuario, solo requiere el user ID.
 router.post("/confirm", confirm);
