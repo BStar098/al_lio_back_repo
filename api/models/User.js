@@ -47,10 +47,12 @@ User.init(
     type: {
       type: S.STRING,
       allowNull: false,
+      defaultValue: "user"
     },
     credits: { 
       type: S.INTEGER, 
-      allowNull: false 
+      allowNull: false,
+      defaultValue: 100
     },
   },
 
