@@ -22,27 +22,36 @@ const getAllProducts = async (req, res, next) => {
 };
 
 const getProductsWithFilters = async (req, res, next) => {
-  const { category, name } = req.body;
-
+  const { category, name } = req.params;
+console.log(name)
   if (name) {
     if (!regexText.test(name)) {
       res.status(400).send("Invalid characters in the name");
       return;
+    }else {
+      try {
+        const products = await filterProducts({name});
+        res.send(products);
+      } catch (err) {
+        next(err);
+      }
     }
   }
+
   if (category) {
     if (!regexText.test(category)) {
       res.status(400).send("Invalid characters in the category");
       return;
+    }else {
+      try {
+        const products = await filterProducts({category});
+        res.send(products);
+      } catch (err) {
+        next(err);
+      }
     }
   }
 
-  try {
-    const products = await filterProducts(req.body);
-    res.send(products);
-  } catch (err) {
-    next(err);
-  }
 };
 
 const getOneProduct = async (req, res, next) => {

@@ -5,11 +5,18 @@ const findAll = async () => {
   return products;
 };
 
-const filterProducts = async body => {
-  const products = await Product.findAll({
-    where: body,
-  });
-  return products;
+const filterProducts = async filter => {
+  if(filter.category){
+    const products = await Product.findAll({
+      where: {category:filter.category},
+    });
+    return products;
+  }else if (filter.name){
+    const products = await Product.findAll({
+      where: {name:filter.name},
+    });
+    return products;
+  }
 };
 
 const findOne = async id => {

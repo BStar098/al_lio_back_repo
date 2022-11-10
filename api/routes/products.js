@@ -4,7 +4,9 @@ const { getAllProducts, getProductsWithFilters, getOneProduct, createProduct, de
 
 router.get("/", getAllProducts);
 
-router.get("/search", getProductsWithFilters);
+router.get("/search/cat/:category", getProductsWithFilters);
+
+router.get("/search/name/:name", getProductsWithFilters);
 
 router.get("/:id", getOneProduct);
 
