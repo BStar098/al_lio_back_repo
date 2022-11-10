@@ -10,6 +10,7 @@ const allReviews = (req, res, next) => {
 };
 
 const newReview = (req, res, next) => {
+  
   Reviews.create(req.body)
     .then(products => res.status(201).send(products))
     .catch(err => next(err));
