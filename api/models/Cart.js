@@ -3,7 +3,29 @@ const db = require("../db/config");
 
 const Product = require("./Product");
 
-class Cart extends S.Model {}
+class Cart extends S.Model {
+  updateFinalPrice(productId, userId, quantity) {
+    return Product.findOne({ where: { id: productId } })
+      .then((product) => {
+        return product.price;
+      })
+      .then((price) => {
+        return price * quantity;
+      })
+      .then((finalPrice) => {
+        return Cart.update(
+          { finalPrice, quantity },
+          {
+            where: {
+              productId,
+              userId,
+            },
+            returning: true,
+          }
+        );
+      });
+  }
+}
 
 Cart.init(
   {
@@ -20,7 +42,7 @@ Cart.init(
   }
 );
 
-Cart.beforeCreate(async newProduct => {
+Cart.beforeCreate(async (newProduct) => {
   const product = await Product.findOne({
     where: { id: newProduct.productId },
   });
