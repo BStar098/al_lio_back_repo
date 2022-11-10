@@ -1,8 +1,8 @@
 const { Cart } = require("../models/index");
 
-const getAll = async () => {
-  const products = await Cart.findAll();
+const getAll = async (id) => {
+  const products = await Cart.findAll({ where: { userId: id } });
   return products;
 };
 
-module.exports = {getAll}
+module.exports = { getAll };
