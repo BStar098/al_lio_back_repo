@@ -31,7 +31,7 @@ Product.init(
       defaultValue: []
     },
     rating: { 
-      type: S.INTEGER 
+      type: S.INTEGER
     },
   },
   {
