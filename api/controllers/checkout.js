@@ -2,7 +2,7 @@ const { Product, User, Compras, Cart } = require("../models");
 const nodemailer = require("nodemailer");
 
 const allCompras = (req, res) => {
-  Compras.findAll().then((compras) => res.send(compras));
+  Compras.findAll().then(compras => res.send(compras));
 };
 
 const comprasSingleUser = (req, res) => {
@@ -10,13 +10,13 @@ const comprasSingleUser = (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((user) => {
+  }).then(user => {
     const userId = user.id;
     Compras.findAll({
       where: {
         userId: userId,
       },
-    }).then((compras) => res.send(compras));
+    }).then(compras => res.send(compras));
   });
 };
 
@@ -25,26 +25,26 @@ const comprasSingleProduct = (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((product) => {
+  }).then(product => {
     const productId = product.id;
     Compras.findAll({
       where: {
         productId: productId,
       },
-    }).then((compras) => res.send(compras));
+    }).then(compras => res.send(compras));
   });
 };
 
 const checkout = async (req, res, next) => {
   try {
     const id = req.body.userId;
-    Compras.findAll({ where: { userId: id } }).then(async (compras) => {
+    Compras.findAll({ where: { userId: id } }).then(async compras => {
       let productList = [];
       //let states = "";
       compras.forEach(async (compra, i) => {
         //states = compra.dataValues.state;
         await Product.findOne({ where: { id: compra.productId } }).then(
-          (productFound) => {
+          productFound => {
             productList.push(productFound.dataValues.name);
           }
         );
@@ -52,14 +52,14 @@ const checkout = async (req, res, next) => {
       let finalquantity = 0;
       let finalPrice = 0;
 
-      await Cart.findAll({ where: { userId: id } }).then((compraCart) => {
+      await Cart.findAll({ where: { userId: id } }).then(compraCart => {
         compraCart.forEach((compra, i) => {
           finalquantity += compra.dataValues.quantity;
           finalPrice += compra.dataValues.finalPrice;
           compra.destroy();
         });
       });
-      await User.findOne({ where: { id: id } }).then((foundUser) => {
+      await User.findOne({ where: { id: id } }).then(foundUser => {
         let output = `<p>Here is your Purchase information</p>
   <h1>Details</h1>
   <h2>Hola, ${foundUser.name} nos contactamos de Al Lio con la informacion de tu compra!</h2>
@@ -108,12 +108,12 @@ const confirm = async (req, res, next) => {
   try {
     let id = req.body.userId;
     let finalPrice = 0;
-    Cart.findAll({ where: { userId: id } }).then(async (compras) => {
-      compras.forEach(async (compra) => {
+    Cart.findAll({ where: { userId: id } }).then(async compras => {
+      compras.forEach(async compra => {
         finalPrice += compra.dataValues.finalPrice;
         let quantityOfPurchasedProducts = compra.dataValues.quantity;
         await Product.findOne({ where: { id: compra.productId } }).then(
-          (productFound) => {
+          productFound => {
             if (productFound.dataValues.stock > quantityOfPurchasedProducts) {
               productFound.update({
                 stock:
@@ -133,7 +133,7 @@ const confirm = async (req, res, next) => {
           }
         );
       });
-      await User.findOne({ where: { id: id } }).then((userFound) => {
+      await User.findOne({ where: { id: id } }).then(userFound => {
         if (userFound.dataValues.credits > finalPrice) {
           userFound.update({
             credits: userFound.dataValues.credits - finalPrice,
@@ -160,7 +160,7 @@ const modifyState = async (req, res, next) => {
     .then(async ([affectedRows, updated]) => {
       const compra = updated[0];
       console.log(compra);
-      await User.findOne({ where: { id: req.params.id } }).then((foundUser) => {
+      await User.findOne({ where: { id: req.params.id } }).then(foundUser => {
         let output = `<p>Here is your Purchase information</p>
   <h1>Details</h1>
   <h2>Hola, ${foundUser.name} nos contactamos de Al Lio con actualizaciones sobre tu compra!</h2>
@@ -193,7 +193,7 @@ const modifyState = async (req, res, next) => {
         res.sendStatus(200);
       });
     })
-    .catch((err) => console.error(err));
+    .catch(err => console.error(err));
 };
 
 module.exports = {
