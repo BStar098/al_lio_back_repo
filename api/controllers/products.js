@@ -10,7 +10,7 @@ const {
 const regexText = /^[a-zA-Z ]+$/;
 const regexSize = /^[a-zA-Z]{1,3}$/;
 const regexId = /^[0-9]+$/;
-const regexUrl = /^http[s]:\/\/[a-z0-9@%$?&*#/.\-]+$/;
+const regexUrl = /^http[s]:\/\/[a-zA-Z0-9@%$?&*#:/=.\-]+$/;
 
 const getAllProducts = async (req, res, next) => {
   try {
