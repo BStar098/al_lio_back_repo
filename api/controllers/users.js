@@ -9,7 +9,7 @@ const {
 } = require("../services/users-services");
 
 const regexEmail = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const regexPassword = /^[a-zA-Z0-9 !@#$%^&*()-_=+.,']{6}$/;
+const regexPassword = /^[a-zA-Z0-9 !@#$%^&*()-_=+.,']{6,32}$/;
 const regexName = /^[a-zA-Z0-9 ]+$/;
 const regexAddress = /^[a-zA-Z0-9 ]+$/;
 const regexId = /^[0-9]+$/;
@@ -45,12 +45,12 @@ const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!regexEmail.test(email)) {
-    res.status(400).send("It's not an email")
-    return
+    res.status(400).send("It's not an email");
+    return;
   }
-  if (!regexPassword.test(password)){
-    res.status(400).send("Invalid characters or length in the password")
-    return
+  if (!regexPassword.test(password)) {
+    res.status(400).send("Invalid characters or length in the password");
+    return;
   }
 
   try {
@@ -74,7 +74,7 @@ const getUsers = async (req, res, next) => {
 
 const getSingleUser = async (req, res, next) => {
   const id = req.params.id;
-  console.log(typeof id)
+  console.log(typeof id);
 
   if (!regexId.test(Number(id))) {
     res.status(400).send("You must be pass a valid integer as id");
