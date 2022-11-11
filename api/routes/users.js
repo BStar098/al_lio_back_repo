@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { validateAuth } = require("../utils/auth");
 
 const {
   createUser,
@@ -9,14 +8,17 @@ const {
   getSingleUser,
   updateUser,
   deleteUser,
-  setAdminis
+  setAdminis,
+  setUserr
 } = require("../controllers/users");
 
 router.post("/register", createUser);
 
 router.post("/login", loginUser);
 
-router.post("/:id", setAdminis)
+router.put("/admin/:id", setAdminis);
+
+router.put("/user/:id", setUserr);
 
 router.put("/:id", updateUser);
 
