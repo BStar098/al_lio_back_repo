@@ -10,7 +10,7 @@ const {
 const regexText = /^[a-zA-Z ]+$/;
 const regexSize = /^[a-zA-Z]{1,3}$/;
 const regexId = /^[0-9]+$/;
-const regexUrl = /^http[s]:\/\/[a-zA-Z0-9@%$?&*#:/=.\-]+$/;
+const regexUrl = /^http[s]:\/\/[a-zA-Z0-9@%$?&_*#:/=.\-]+$/;
 
 const getAllProducts = async (req, res, next) => {
   try {
@@ -23,14 +23,14 @@ const getAllProducts = async (req, res, next) => {
 
 const getProductsWithFilters = async (req, res, next) => {
   const { category, name } = req.params;
-console.log(name)
+  console.log(name);
   if (name) {
     if (!regexText.test(name)) {
       res.status(400).send("Invalid characters in the name");
       return;
-    }else {
+    } else {
       try {
-        const products = await filterProducts({name});
+        const products = await filterProducts({ name });
         res.send(products);
       } catch (err) {
         next(err);
@@ -42,16 +42,15 @@ console.log(name)
     if (!regexText.test(category)) {
       res.status(400).send("Invalid characters in the category");
       return;
-    }else {
+    } else {
       try {
-        const products = await filterProducts({category});
+        const products = await filterProducts({ category });
         res.send(products);
       } catch (err) {
         next(err);
       }
     }
   }
-
 };
 
 const getOneProduct = async (req, res, next) => {
@@ -117,7 +116,7 @@ const createProduct = async (req, res, next) => {
     }
   }
   if (img) {
-    img.forEach(imag => {
+    img.forEach((imag) => {
       if (!regexUrl.test(imag)) {
         res.status(400).send("Img must be a valid URL");
         return;
@@ -152,7 +151,7 @@ const deleteProduct = async (req, res, next) => {
 const editProduct = async (req, res, next) => {
   const { name, price, category, colour, size, stock, description, img } =
     req.body;
-  const id = req.params.id
+  const id = req.params.id;
 
   if (name) {
     if (!regexText.test(name)) {
@@ -197,7 +196,7 @@ const editProduct = async (req, res, next) => {
     }
   }
   if (img) {
-    img.forEach(imag => {
+    img.forEach((imag) => {
       if (!regexUrl.test(imag)) {
         res.status(400).send("Img must be a valid URL");
         return;
@@ -212,8 +211,8 @@ const editProduct = async (req, res, next) => {
   }
 
   try {
-    const product = await update(req.body, id)
-    res.send(product)
+    const product = await update(req.body, id);
+    res.send(product);
   } catch (err) {
     next(err);
   }
