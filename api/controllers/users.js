@@ -6,6 +6,7 @@ const {
   update,
   destroy,
   setAdmin,
+  setUser
 } = require("../services/users-services");
 
 const regexEmail = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -163,6 +164,22 @@ const setAdminis = async (req, res, next) => {
   }
 };
 
+const setUserr = async (req, res, next) => {
+  const id = req.params.id;
+
+  if (!regexId.test(id)) {
+    res.status(400).send("You must be pass a valid integer as id");
+    return;
+  }
+
+  try {
+    const user = await setUser(id);
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   createUser,
   loginUser,
@@ -171,4 +188,5 @@ module.exports = {
   updateUser,
   deleteUser,
   setAdminis,
+  setUserr
 };

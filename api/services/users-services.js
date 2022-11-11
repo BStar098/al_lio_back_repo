@@ -47,9 +47,13 @@ const destroy = async id => {
 };
 
 const setAdmin = async id => {
-  const user = await User.findOne({ where: { id } });
-  user.type = "admin";
-  return user;
+  const [affectedRows, updated] = await User.update({type:'admin'},{ where: { id }, returning:true });
+  return updated[0];
+};
+
+const setUser = async id => {
+  const [affectedRows, updated] = await User.update({type:'user'},{ where: { id }, returning:true });
+  return updated[0];
 };
 
 module.exports = {
@@ -60,4 +64,5 @@ module.exports = {
   update,
   destroy,
   setAdmin,
+  setUser
 };
