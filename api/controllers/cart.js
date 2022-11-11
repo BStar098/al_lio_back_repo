@@ -27,12 +27,17 @@ const removeProductFromCart = (req, res) => {
 const updateQuantity = (req, res) => {
   //pasar en el body productId, userId, quantity
   const { productId, userId, quantity } = req.body;
-
   Cart.findOne({ where: { productId, userId } })
     .then((cart) => {
-      cart.updateFinalPrice(productId, userId, quantity).then((finalCart) => {
-        res.send(finalCart[1]);
-      });
+      if (cart.quantity <= 1) {
+        Cart.destroy({ where: { productId, userId } }).then(
+          res.sendStatus(204)
+        );
+      } else {
+        cart.updateFinalPrice(productId, userId, quantity).then((finalCart) => {
+          res.send(finalCart[1]);
+        });
+      }
     })
     .catch((err) => console.error(err));
 };
