@@ -54,13 +54,6 @@ const confirm = async (req, res, next) => {
               res.status(404).send("No hay Stock");
               return;
             }
-            Compras.create({
-              productId: productFound.dataValues.id,
-              userId: id,
-              state: "in process",
-              quantity: quantityOfPurchasedProducts,
-              finalPrice: finalPrice,
-            });
           }
         );
       });
